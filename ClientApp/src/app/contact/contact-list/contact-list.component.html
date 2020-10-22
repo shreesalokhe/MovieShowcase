@@ -1,0 +1,62 @@
+<div class="list row">
+    <div class="col-md-12">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search Movie by year"          
+          [(ngModel)]="title"
+        />    
+        <button
+        class="badge badge-primary mr-2"        
+        (click)="searchMovie()">
+        Search
+      </button>       
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Movie List</h4>
+      <ul class="list-group">
+        <li  class="list-group-item"
+          *ngFor="let mv of movies; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveContact(mv, i)" >
+          <div class="row">
+            <div class="col-md-10">
+              {{ mv.title }}  {{ mv.year }} 
+            </div>           
+          </div>         
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentMovie">
+        <h4>Movie Details</h4>
+        <div class="row">         
+          <div class="col-md-8">
+            <div>
+              <label><strong>First Name:</strong></label> {{ currentMovie.title }}
+            </div>
+            <div>
+                <label><strong>Last Name:</strong></label> {{ currentMovie.year }}
+              </div>
+              <div>
+                <label><strong>Release Date</strong></label> {{ currentMovie.info.release_date }}
+              </div>
+              <div>
+                <label><strong>Plot</strong></label> {{ currentMovie.info.plot }}
+              </div>
+             
+          </div>
+          <div class="col-md-4">
+            <img style="height: 400px;" src="{{ currentMovie.info.image_url }}">
+          </div>
+        </div>
+</div>
+  
+      <div *ngIf="!currentMovie">
+        <br />
+        <p>Please click on a movie for details</p>
+      </div>
+    </div>
+  </div>
